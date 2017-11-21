@@ -45,9 +45,14 @@ void ATank::FireBullet() {
 	if (Barrel && isReloaded) {
 		FVector ProjectileVector = Barrel->GetSocketLocation(FName("Projectile"));
 		FRotator ProjectileRotation = Barrel->GetSocketRotation(FName("Projectile"));
+		
 		AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ProjectileVector, ProjectileRotation);
+		if (!Projectile) {
+			UE_LOG(LogTemp, Warning, TEXT("Projectile did not spawned."));
+			return;
+		}
+		
 		Projectile->LaunchProjectile(LaunchSpeed);
-
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }

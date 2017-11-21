@@ -27,15 +27,16 @@ protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
 public:	
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000.0f;
+	
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float ReloadTimeInSeconds = 3.0f;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr;
-
-	float ReloadTimeInSeconds = 3.0f;
 	double LastFireTime = 0.0;
 
 	// Called to bind functionality to input
